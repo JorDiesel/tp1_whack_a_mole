@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,18 +14,20 @@ class MyApp extends StatelessWidget{
         backgroundColor: Color.fromRGBO(0, 1, 35, 1),
         body: Center(
             child: Container(
-              height: 250.0,
-              width: 200.0,
-              color: Colors.black,
-              child: SvgPicture.asset('../images/backgroundPattern.svg'),
+              height: 650.0,
+              width: 650.0,
+              color: Color.fromRGBO(0, 1, 50, 1),
+              child: Image.asset(
+                '../images/backgroundPattern.png',
+                repeat: ImageRepeat.repeat,
+                color: Color.fromRGBO(11, 29, 49, 1),
+              ),
             )
         )
       )
     );
   }
 }
-
-//url(images/backgroundPattern.svg) repeat rgb(11, 29, 49);
 //floatingActionButton: FloatingActionButton(
 //onPressed: _incrementCounter,
 // tooltip: 'Increment',
