@@ -14,10 +14,10 @@ class Background extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('../images/backgroundPattern.png'),
             repeat: ImageRepeat.repeat,
-            opacity: 0.25
+            opacity: 0.1
           )
         ),
-        height: (MediaQuery.of(context).size.height * (3/4)),
+        height: (MediaQuery.of(context).size.height * (7/8)),
         width: (MediaQuery.of(context).size.width * (3/4)),
         child: Menu(),
       )

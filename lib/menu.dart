@@ -28,10 +28,10 @@ class Menu extends StatelessWidget {
                         color: Colors.lightBlue
                     ),
                   ),
-                Expanded(
-                  child: TextButton(
+                 Spacer(),
+                 TextButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 25)),//(MediaQuery.of(context).size.height * (3/4)),
+                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed))
@@ -55,11 +55,10 @@ class Menu extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: TextButton(
+                  Spacer(),
+                  TextButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 50)),
+                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed))
@@ -77,11 +76,10 @@ class Menu extends StatelessWidget {
                     onPressed: () {},
                     child: const Text('HIGH SCORES', style: TextStyle(color: Colors.white)),
                   ),
-                ),
-                Expanded(
-                  child: TextButton(
+                Spacer(),
+                TextButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 50)),
+                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed))
@@ -99,11 +97,10 @@ class Menu extends StatelessWidget {
                     onPressed: () {},
                     child: const Text('SCORE VALIDATOR', style: TextStyle(color: Colors.white)),
                   ),
-                ),
-                Expanded(
-                  child: TextButton(
+                Spacer(),
+                TextButton(
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 50)),
+                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed))
@@ -121,7 +118,7 @@ class Menu extends StatelessWidget {
                     onPressed: () {},
                     child: const Text('ABOUT', style: TextStyle(color: Colors.white)),
                   ),
-                ),
+                Spacer()
               ],
             )
         ),
