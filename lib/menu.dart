@@ -29,32 +29,32 @@ class Menu extends StatelessWidget {
                     ),
                   ),
                  Spacer(),
-                 TextButton(
-                    style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed))
-                              return Colors.lightBlue;
-                            return null;
-                          }
+                  TextButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                                (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed))
+                                return Colors.lightBlue;
+                              return null;
+                            }
+                        ),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50.0),
+                                side: BorderSide(color: Colors.lightBlue, width: 2)
+                            )
+                        ),
                       ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              side: BorderSide(color: Colors.lightBlue, width: 2)
-                          )
+                      onPressed: () {},
+                      child: const Text(
+                        'NEW GAME',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+                        ),
                       ),
                     ),
-                    onPressed: () {},
-                    child: const Text(
-                      'NEW GAME',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                      ),
-                    ),
-                  ),
                   Spacer(),
                   TextButton(
                     style: ButtonStyle(
@@ -124,6 +124,5 @@ class Menu extends StatelessWidget {
         ),
       ],
     );
-
   }
 }
