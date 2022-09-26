@@ -11,6 +11,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home:
+      OutlinedButton(
+        onPressed: (){print("text");},
+        //color: Color.fromRGBO(0, 147, 216, 100),
+          style: OutlinedButton.styleFrom(backgroundColor: Colors.white,
+              side: const BorderSide(width: 5.0, color: Colors.blue),
+          ),
+
+
+        /*style: ButtonStyle(
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: const BorderSide(width: 5.0, color: Colors.blue)
+          )),
+        ),*/
+        child: const Text("Return to menu",style: TextStyle(
+            color: Colors.blue)
+        )
+    )
+    );
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
