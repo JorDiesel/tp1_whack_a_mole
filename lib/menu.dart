@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tp1_whack_a_mole/scoreValidator.dart';
+import 'background.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -94,7 +96,9 @@ class Menu extends StatelessWidget {
                           )
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Background(classeActive: ScoreValidator())));
+                    },
                     child: const Text('SCORE VALIDATOR', style: TextStyle(color: Colors.white)),
                   ),
                 Spacer(),
