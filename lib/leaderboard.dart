@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:tp1_whack_a_mole/GrilleJoueur.dart';
+import 'package:tp1_whack_a_mole/ListAvecScroll.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -48,114 +53,115 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutState extends State<AboutPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  /*final scores = List.generate(
+    20,
+        (i) => LeaderBoard(
+      '09-26-2022',
+      'joueur$i',
+      'score: $i',
+    ),
+  );*/
+  final ScrollController _firstController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Scaffold(
+
+            body: Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+              child: Container(
+                width: 450,
+                  height: 450,
+                  child: Column(
+                      children: [
+                        Spacer(),
+                        Text("Highscores",
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: Colors.white)),
+                        Spacer(),
+                        Container(
+                          width: 250,
+                          height: 250,
+                          child: ListeAvecScroll()
+                          /*child: SizedBox(
+                              width: constraints.maxWidth / 2,
+                              // When using the PrimaryScrollController and a Scrollbar
+                              // together, only one ScrollPosition can be attached to the
+                              // PrimaryScrollController at a time. Providing a
+                              // unique scroll controller to this scroll view prevents it
+                              // from attaching to the PrimaryScrollController.
+
+                              child: Scrollbar(
+
+                                thumbVisibility: true,
+                                controller: _firstController,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    controller: _firstController,
+                                    itemCount: 5,
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ListeAvecScroll(),
+                                      );
+                                    }
+                                )
+                            )
+                          )*/
+                        ),
+                        Spacer(),
+                        OutlinedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            //color: Color.fromRGBO(0, 147, 216, 100),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      side: const BorderSide(
+                                          width: 5.0, color: Colors.blue)
+                                  )),
+                            ),
+                            child: const Text(
+                                "Return to menu", style: TextStyle(
+                                color: Colors.white)
+                            )
+                        ),
+                        Spacer(),
+                      ]
+                  )
+              ),
+            ),
+          );
+        });
+  }
+}/*
+
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Container(
-            child: Column(
-                children: [
-                  Spacer(),
-                  Text("Highscores",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(color: Colors.white)),
-                  Spacer(),
-                  Container(
-                      padding: const EdgeInsets.all(80),
-                      decoration: const BoxDecoration(
-                        color:Color.fromRGBO(144, 144, 144, 56), //
-                        ),
-                      child: Row(
-                          children: [
-                            Text("Date",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white)),
-                            SizedBox(width: 50),
-                            Text("Joueur",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white)),
-                            SizedBox(width: 50),
-                            Text("Score",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white))
-                          ]
-                      )
-                  ),
-                  Container(
-                      padding: const EdgeInsets.all(80),
-                      decoration: const BoxDecoration(
-                        color:Color.fromRGBO(144, 144, 144, 80), //
-                      ),
-                      child: Row(
-                          children: [
-                            Text("Date",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white)),
-                            SizedBox(width: 50),
-                            Text("Joueur",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white)),
-                            SizedBox(width: 50),
-                            Text("Score",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.white))
-                          ]
-                      )
-                  ),
-                  Spacer(),
-                  OutlinedButton(
-                      onPressed: (){Navigator.pop(context);},
-                      //color: Color.fromRGBO(0, 147, 216, 100),
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                            side: const BorderSide(width: 5.0, color: Colors.blue)
-                        )),
-                      ),
-                      child: const Text("Return to menu",style: TextStyle(
-                          color: Colors.white)
-                      )
-                  ),
-                  Spacer(),
-                ]
-            )
-        ),
-      ),
-    );
+
   }
 }
+
+class LeaderBoard {
+  final String date;
+  final String joueur;
+  final String score;
+
+  const LeaderBoard(this.date, this.joueur ,this.score);
+}*/
