@@ -97,7 +97,7 @@ class Menu extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Background(classeActive: ScoreValidator())));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ScoreValidator()));
                     },
                     child: const Text('SCORE VALIDATOR', style: TextStyle(color: Colors.white)),
                   ),
