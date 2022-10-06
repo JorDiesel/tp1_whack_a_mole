@@ -19,7 +19,7 @@ class About extends StatelessWidget {
         // in the middle of the parent.
           child: Container(
             height: 400,
-              width: 600,
+              width: 800,
             padding: const EdgeInsets.all(80),
             constraints: BoxConstraints.expand(
             height: Theme.of(context).textTheme.headline4!.fontSize! * 1.2 + 500.0,
@@ -28,34 +28,36 @@ class About extends StatelessWidget {
             child: Column(
 
             children: [
-              Padding(padding:EdgeInsets.all(20.0)),
+              Padding(padding:EdgeInsets.all(10.0)),
               Container(
                 height:1,
                 decoration: new BoxDecoration(
                   color: Colors.white,
                 ),
               ),
-              Padding(padding:EdgeInsets.all(20.0)),
+              Padding(padding:EdgeInsets.all(10.0)),
               Text('ABOUT',
                 style: TextStyle(
-                    color: Colors.white
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                 ),
               ),
-              Padding(padding:EdgeInsets.all(20.0)),
-            Text('Urna nec tincidunt praesent semper feugiat nibh sed. Interdum consectetur libero id faucibus nisl tincidunt. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Congue mauris rhoncus aenean vel. Duis tristique sollicitudin nibh sit amet commodo nulla. Etiam tempor orci eu lobortis. Auctor urna nunc id cursus metus.',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
+              Padding(padding:EdgeInsets.all(10.0)),
+            Text('Urna nec tincidunt praesent semper feugiat nibh sed. Interdum consectetur libero id faucibus nisl tincidunt.',
+                style:
+                    TextStyle(
+                    color: Colors.white,
                 ),
+
             ),
-              Padding(padding:EdgeInsets.all(20.0)),
+              Padding(padding:EdgeInsets.all(10.0)),
               Container(
                 height:1,
                 decoration: new BoxDecoration(
                   color: Colors.white,
                 ),
               ),
-              Padding(padding:EdgeInsets.all(20.0)),
+              Padding(padding:EdgeInsets.all(10.0)),
               new GestureDetector(
                 onTap: (){
                   Navigator.pop(context);
