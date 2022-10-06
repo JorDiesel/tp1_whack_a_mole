@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1_whack_a_mole/scoreValidator.dart';
+import 'Leaderboard.dart';
+import 'about.dart';
 import 'background.dart';
 
 class Menu extends StatelessWidget {
@@ -75,7 +77,7 @@ class Menu extends StatelessWidget {
                           )
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LeaderBoard()));},
                     child: const Text('HIGH SCORES', style: TextStyle(color: Colors.white)),
                   ),
                 Spacer(),
@@ -119,7 +121,7 @@ class Menu extends StatelessWidget {
                           )
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => About()));},
                     child: const Text('ABOUT', style: TextStyle(color: Colors.white)),
                   ),
                 Spacer()

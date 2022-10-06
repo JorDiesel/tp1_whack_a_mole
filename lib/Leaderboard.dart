@@ -3,56 +3,11 @@ import 'package:flutter/rendering.dart';
 import 'package:tp1_whack_a_mole/GrilleJoueur.dart';
 import 'package:tp1_whack_a_mole/ListAvecScroll.dart';
 
+import 'background.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'About',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const AboutPage(title: 'la page About'),
-    );
-  }
-}
-
-class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<AboutPage> createState() => _AboutState();
-}
-
-class _AboutState extends State<AboutPage> {
+class LeaderBoard extends StatelessWidget {
+  const LeaderBoard ({super.key});
   /*final scores = List.generate(
     20,
         (i) => LeaderBoard(
@@ -61,24 +16,21 @@ class _AboutState extends State<AboutPage> {
       'score: $i',
     ),
   );*/
-  final ScrollController _firstController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return Scaffold(
-
-            body: Center(
+    ScrollController _firstController = ScrollController();
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Background(classeActive: Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
               child: Container(
-                width: 450,
+                width: 700,
                   height: 450,
                   child: Column(
                       children: [
-                        Spacer(),
-                        Text("Highscores",
+                        Text("HIGHSCORES",
                             style: Theme
                                 .of(context)
                                 .textTheme
@@ -86,7 +38,7 @@ class _AboutState extends State<AboutPage> {
                                 .copyWith(color: Colors.white)),
                         Spacer(),
                         Container(
-                          width: 250,
+                          width: 600,
                           height: 250,
                           child: ListeAvecScroll()
                           /*child: SizedBox(
@@ -117,31 +69,41 @@ class _AboutState extends State<AboutPage> {
                           )*/
                         ),
                         Spacer(),
-                        OutlinedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            //color: Color.fromRGBO(0, 147, 216, 100),
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      side: const BorderSide(
-                                          width: 5.0, color: Colors.blue)
-                                  )),
+                        TextButton(
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
+                            overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                                    (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.pressed))
+                                    return Colors.lightBlue;
+                                  return null;
+                                }
                             ),
-                            child: const Text(
-                                "Return to menu", style: TextStyle(
-                                color: Colors.white)
-                            )
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                    side: BorderSide(color: Colors.lightBlue, width: 2)
+                                )
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'BACK TO MENU',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white
+                            ),
+                          ),
                         ),
                         Spacer(),
                       ]
                   )
               ),
-            ),
-          );
-        });
+            )
+    )
+    );
   }
 }/*
 
