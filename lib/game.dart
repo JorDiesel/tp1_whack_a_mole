@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:tp1_whack_a_mole/background.dart';
 import 'dart:math';
 
 final _random = new Random();
+
 
 /**
  * Generates a positive random integer uniformly distributed on the range
@@ -27,49 +30,142 @@ class _JeuState extends State<Jeu> {
   int bonus = 0;
   int life = 3;
   Circle circle = Circle();
+  Timer _timer = Timer.periodic(const Duration(seconds: 5), (timer) {});
 
-  void AddScore() {
+  void Good() {
     setState(() {
       score += 10 * (1 + bonus);
-    });
-  }
-  void AddBonus() {
-    setState(() {
       bonus += 1;
+      ChangeCircle();
     });
   }
-  void RemoveBonus() {
+  void Bad() {
     setState(() {
       bonus = 0;
-    });
-  }
-  void RemoveLife() {
-    setState(() {
       life -= 1;
+      ChangeCircle();
     });
+    if(life == 0){
+      Navigator.pop(context);
+    }
   }
-  void ChangeCircle(){
+  void  ChangeCircle() {
+    _timer.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      Bad();
+    });
     setState(() {
       circle = Circle();
-    });
+    }
+    );
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: widget.child,
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Background(classeActive:
+        Container(
+            child : Column(
+              children: [Row(
+                children:[
+                  const Spacer(),
+                  Column(
+                  children: [
+                    const Text(
+                        "Bonus",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0
+                        )
+                    ),
+                    Text(
+                        bonus.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0
+                        )
+                    )
+                  ],
+                ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      const Text(
+                          "Score",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0
+                          )
+                      ),
+                      Text(
+                          score.toString(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0
+                          )
+                      )
+                    ],
+                  ),
+                  const Spacer(),
+                  Column(
+                    children: [
+                      const Text(
+                          "Life",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0
+                          )
+                      ),
+                      Text(
+                          life.toString(),
+                          style: const TextStyle(
+                              color: Colors.blue,
+                              fontSize: 16.0
+                          )
+                      )
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
+                Container(
+                  child: Transform.translate(
+                    offset: Offset(circle.x, circle.y),
+                    child: Container(
+                      padding: const EdgeInsets.all(0.1),
+                      child: IconButton(
+                        icon: Image.asset('../images/cercleBleu.png'),
+                        iconSize: 100,
+                        onPressed: () {
+                          Timer(Duration(seconds: 5), () {
+                            Bad();
+                          });
+                          Good();
+                        },
+                      )
+                    ),
+                  ),
+                )
+              ]
+            ),
+          )
+        )
     );
   }
 }
 
 class Circle {
-  late int x, y, lifespan; // Declare instance variable x and y, initially null.
+  late double x, y; // Declare instance variable x and y, initially null.
 
   Circle(){
-    x = 1 + _random.nextInt(100 - 1);
-    y = 1 + _random.nextInt(100 - 1);
-    lifespan = 5;
+    x = 20.0 + _random.nextInt(500 - 20);
+    y = 20.0 + _random.nextInt(500 - 20);
   }
 }
 

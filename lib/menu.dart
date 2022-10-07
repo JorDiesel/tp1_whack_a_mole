@@ -51,7 +51,7 @@ class Menu extends StatelessWidget {
                             )
                         ),
                       ),
-                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const Background(classeActive: Jeu())));},
+                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => Jeu()));},
                       child: const Text(
                         'NEW GAME',
                         style: TextStyle(
