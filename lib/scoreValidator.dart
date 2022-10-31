@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1_whack_a_mole/background.dart';
 import 'dart:math';
+import 'sqlite.dart';
 
 class ScoreValidator extends StatefulWidget{
   const ScoreValidator({super.key});
@@ -202,6 +203,7 @@ class _ScoreValidatorState extends State<ScoreValidator> {
                     onPressed: () {
                       randomiseIsExist();
                       buttonpressed();
+                      baseDonnee.Ajouter(baseDonnee.GestionBd(), nameController.text, int.parse(scoreController.text));
                       print('Date: ' + dateController.text + ', Name: ' + nameController.text + ', Score: ' + scoreController.text);
                     },
                     child: const Text(

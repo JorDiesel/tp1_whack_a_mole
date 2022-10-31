@@ -24,22 +24,22 @@ class Liste extends StatelessWidget {
         home: Background(classeActive:  Center(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
-          child: ListView.builder(
+          child: FutureBuilder<List<Score>>(
+            future: data(), // a previously-obtained Future<String> or null
+            builder: (BuildContext context,AsyncSnapshot<List<Score>> snapshot) {
+            List<Widget> children;
+            if (snapshot.hasData) {
+              children = <Widget>[
+              ListView.builder(
               primary: true,
-              itemCount: 100,
+              itemCount: snapshot.data?.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                     height: 50,
                     color: index.isEven
                         ? Color.fromRGBO(120, 120, 120, 100)
                         : Color.fromRGBO(80, 80, 80, 100),
-                    child: FutureBuilder<List<Score>>(
-                  future: data(), // a previously-obtained Future<String> or null
-                  builder: (BuildContext context,AsyncSnapshot<List<Score>> snapshot) {
-                    List<Widget> children;
-                    if (snapshot.hasData) {
-                      children = <Widget>[
-                        new GestureDetector(
+                    child: new GestureDetector(
                             onTap: (){
                               print("Container clicked");
                             },
@@ -59,6 +59,8 @@ class Liste extends StatelessWidget {
 
                             )
                         )
+                    );
+                  }),
                     ];
                     } else if (snapshot.hasError) {
                       children = <Widget>[
@@ -93,9 +95,7 @@ class Liste extends StatelessWidget {
                       ),
                     );
                   },
-                ),
-                );
-              }),
+        )
         )
         )
     );

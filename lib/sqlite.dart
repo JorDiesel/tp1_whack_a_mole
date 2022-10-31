@@ -40,7 +40,7 @@ class baseDonnee {
       onCreate: (db, version) {
         // create table
         return db.execute(
-          'CREATE TABLE scores(id INTEGER PRIMARY KEY, nom varchar(255), score INTEGER), date TIMESTAMP',
+          'CREATE TABLE scores(id INTEGER PRIMARY KEY, nom VARCHAR(255), score INTEGER, date TIMESTAMP)',
         );
       },
       version: 1,
@@ -62,6 +62,27 @@ class baseDonnee {
           date: maps[i]['date']
       );
     });
+  }
+  static Future<void> Ajouter(database,nom,score) async {
+    //Ref db
+    final db = await database;
+    var list = await Scores(database);
+    var longueur = list.length;
+
+    // Select all
+    final List<Map<String, dynamic>> maps = await db.query('scores');
+
+    var leScore = score(
+      id: longueur,
+      nom: nom,
+      score: score,
+      date: DateTime.now()
+    );
+    return await db.insert(
+      'scores',
+      leScore.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }
 
