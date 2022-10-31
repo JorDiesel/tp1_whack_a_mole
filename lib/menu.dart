@@ -124,7 +124,27 @@ class Menu extends StatelessWidget {
                     onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => About()));},
                     child: const Text('ABOUT', style: TextStyle(color: Colors.white)),
                   ),
-                Spacer()
+                Spacer(),
+                TextButton(
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.height * (3/4) , 75)),
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed))
+                            return Colors.white;
+                          return null;
+                        }
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                            side: BorderSide(color: Colors.white, width: 2)
+                        )
+                    ),
+                  ),
+                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => About()));},
+                  child: const Text('', style: TextStyle(color: Colors.white)),
+                ),
               ],
             )
         ),
