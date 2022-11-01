@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:tp1_whack_a_mole/GrilleJoueur.dart';
-import 'package:tp1_whack_a_mole/ListAvecScroll.dart';
+import 'package:tp1_whack_a_mole/grilleJoueur.dart';
+import 'package:tp1_whack_a_mole/listAvecScroll.dart';
 
 import 'background.dart';
 

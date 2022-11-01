@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tp1_whack_a_mole/scoreValidator.dart';
-import 'Leaderboard.dart';
+import 'leaderboard.dart';
 import 'about.dart';
 import 'background.dart';
 

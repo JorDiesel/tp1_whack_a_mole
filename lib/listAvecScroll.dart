@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:tp1_whack_a_mole/List.dart';
+import 'package:tp1_whack_a_mole/list.dart';
 
 class ListeAvecScroll extends StatefulWidget {
   const ListeAvecScroll({super.key});

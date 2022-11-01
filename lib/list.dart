@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1_whack_a_mole/sqlite.dart';
 import 'sqlite.dart';
+import 'scoreUpdate.dart';
 
 import 'background.dart';
 
@@ -10,6 +11,7 @@ Future<List<Score>> data() async{
 }
 
 class Liste extends StatelessWidget {
+  static int theId = 0;
   const Liste ({super.key});
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,29 @@ class Liste extends StatelessWidget {
                                       Text((snapshot.data![int.parse('$index')].nom).toString(),style:TextStyle(color: Colors.white)),
                                       Spacer(),
                                       Text('score: '+(snapshot.data![int.parse('$index')].nom).toString(),style:TextStyle(color: Colors.white)),
+                                      Spacer(),
+                                      new GestureDetector(
+                                          onTap: (){
+                                            baseDonnee.Delete(baseDonnee.GestionBd(),int.parse('$index'));
+                                          },
+                                          child:Image.asset("../images/trash.png",
+                                              height : 20,
+                                              width: 20,
+                                              scale : 0.1
+                                          )
+                                      ),
+                                      Spacer(),
+                                      new GestureDetector(
+                                          onTap: (){
+                                            theId = int.parse('$index');
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => ScoreUpdate()));
+                                          },
+                                          child:Image.asset("../images/pen.png",
+                                              height : 20,
+                                              width: 20,
+                                              scale : 0.1
+                                          )
+                                      ),
                                       Padding(padding:EdgeInsets.all(20.0))
                                     ]
                                 )

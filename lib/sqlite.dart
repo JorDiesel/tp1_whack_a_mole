@@ -39,8 +39,11 @@ class baseDonnee {
       join(await getDatabasesPath(), 'score_database.db'),
       onCreate: (db, version) {
         // create table
-        return db.execute(
+        db.execute(
           'CREATE TABLE scores(id INTEGER PRIMARY KEY, nom VARCHAR(255), score INTEGER, date TIMESTAMP)',
+        );
+        return db.execute(
+            "INSERT INTO scores (nom, score, date) VALUES ('joe', 378678)",
         );
       },
       version: 1,
@@ -68,12 +71,12 @@ class baseDonnee {
     final db = await database;
     var list = await Scores(database);
     var longueur = list.length;
-
-    // Select all
-    final List<Map<String, dynamic>> maps = await db.query('scores');
+    if (longueur == null){
+      longueur=1;
+    }
 
     var leScore = score(
-      id: longueur,
+      id: longueur+1,
       nom: nom,
       score: score,
       date: DateTime.now()
@@ -82,6 +85,33 @@ class baseDonnee {
       'scores',
       leScore.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+  static Future<void> Delete(database,id) async
+  {
+    final db = await database;
+    // Remove the Dog from the database.
+    await db.delete(
+      'scores',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+  static Future<void> Update(database,id,nom,score,date) async {
+    //Ref db
+    final db = await database;
+
+    var leScore = score(
+        id: id,
+        nom: nom,
+        score: score,
+        date: date
+    );
+    await db.update(
+      'scores',
+      score.toMap(),
+      where: 'id = ?',
+      whereArgs: [score.id],
     );
   }
 }
